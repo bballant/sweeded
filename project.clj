@@ -1,6 +1,7 @@
 (defproject hello-seymore "0.1.0-SNAPSHOT"
   :dependencies [[markdown-clj "0.9.74"]
                  [prismatic/dommy "1.1.0"]
+                 [secretary "1.2.3"]
                  [org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "1.7.122"]]
   :plugins [[lein-figwheel "0.3.9"]]
@@ -9,6 +10,7 @@
     :builds [{:id "dev"
               :source-paths ["src"]
               :figwheel true
-              :compiler {:main "sweeded.core"} 
-             }]
-   })
+              :compiler {:main "sweeded.core"
+                         :asset-path "js/out"
+                         :output-to "resources/public/js/main.js"
+                         :output-dir "resources/public/js/out"}}]})
