@@ -2,6 +2,7 @@
   :dependencies [[markdown-clj "0.9.74"]
                  [prismatic/dommy "1.1.0"]
                  [secretary "1.2.3"]
+                 [cljsjs/pixi "3.0.10-0"]
                  [org.clojure/clojure "1.7.0"]
                  [org.clojure/clojurescript "1.7.122"]]
   :plugins [[lein-figwheel "0.3.9"]]

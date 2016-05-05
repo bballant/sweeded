@@ -5,6 +5,7 @@
     [secretary.core :as secretary :refer-macros [defroute]]
     [clojure.string :as str]
     [markdown.core :as md]
+    cljsjs.pixi
     [goog.events :as events]
     [goog.history.EventType :as EventType])
   (:import [goog.history Html5History EventType]))
@@ -35,6 +36,11 @@
 
 (defroute home-path "/" []
   (reset! current-page 0)
+  (draw-slide @current-page))
+
+(defroute game-path "/game" []
+  (js/console.log js/PIXI)
+  (js/console.log (js/PIXI.autoDetectRenderer 256 256))
   (draw-slide @current-page))
 
 (defroute page-path "/page/:n" [n]
@@ -101,4 +107,4 @@
 (dommy/listen! prev-button
                :click prev-click-handler)
 
-(nav! (page-path {:n 0}))
+(nav! (game-path))
