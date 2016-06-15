@@ -2,8 +2,10 @@
   (:require
     [sweeded.slides :refer [slides]]
     [sweeded.router :as r]
+    [sweeded.csv :as csv]
     [dommy.core :as dommy :refer-macros [sel sel1]]))
 
+(def file-input (sel1 :#file-input))
 (def next-button (sel1 :#next-button))
 (def prev-button (sel1 :#prev-button))
 
@@ -32,3 +34,8 @@
 
 (dommy/listen! prev-button
                :click prev-click-handler)
+
+(dommy/listen! file-input
+               :change csv/read-single-file)
+
+(r/nav! (r/game-path))

@@ -1,8 +1,9 @@
 (ns sweeded.router
   (:require
+    [sweeded.csv :as csv]
+    [sweeded.slide-util :as ssu]
     [secretary.core :as secretary :refer-macros [defroute]]
     cljsjs.pixi
-    [sweeded.slide-util :as ssu]
     [goog.events :as events]
     [goog.history.EventType :as EventType])
   (:import [goog.history Html5History EventType]))
@@ -26,6 +27,9 @@
 (defroute game-path "/game" []
   (js/console.log js/PIXI)
   (js/console.log (js/PIXI.autoDetectRenderer 256 256))
+  (ssu/draw-slide @current-page))
+
+(defroute dork-path "/dork" []
   (ssu/draw-slide @current-page))
 
 (defroute page-path "/page/:n" [n]
