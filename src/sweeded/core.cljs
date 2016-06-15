@@ -6,6 +6,7 @@
     [clojure.string :as str]
     [markdown.core :as md]
     cljsjs.pixi
+    cljsjs.papaparse
     [goog.events :as events]
     [goog.history.EventType :as EventType])
   (:import [goog.history Html5History EventType]))
@@ -41,6 +42,19 @@
 (defroute game-path "/game" []
   (js/console.log js/PIXI)
   (js/console.log (js/PIXI.autoDetectRenderer 256 256))
+  (draw-slide @current-page))
+
+(defroute dork-path "/dork" []
+  (js/console.log "hi")
+  (js/Papa.parse "/Users/jb/Downloads/currentTransaction_7711.csv"
+                 (js-obj
+                   "complete"
+                   (fn [results]
+                     (js/console.log "Finished" (.-data results)))
+                   "error"
+                   (fn [e f]
+                     (js/console.log "Error" e f)))) 
+  (js/console.log "bye")
   (draw-slide @current-page))
 
 (defroute page-path "/page/:n" [n]
@@ -107,4 +121,4 @@
 (dommy/listen! prev-button
                :click prev-click-handler)
 
-(nav! (game-path))
+;(nav! (game-path))
